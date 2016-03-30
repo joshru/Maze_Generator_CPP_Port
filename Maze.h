@@ -7,35 +7,11 @@
 
 
 #include <stdlib.h>
-#include <bits/stl_stack.h>
-#include <bits/stl_vector.h>
-#include <bits/stl_set.h>
-
-
-class Maze {
-public:
-    const int r = rand();
-    Cell **myMaze;
-    int visited;
-    Maze(int, int, bool);
-    void display();
-
-
-private:
-    std::stack<Cell> lastGoodCell;
-    std::stack<Cell> solution;
-    std::set<Cell> solutionSet;
-    bool solutionFound;
-    bool debug;
-    int myRows;
-    int myCols;
-    int numCells;
-    void fillMaze();
-    void dig();
-    std::vector<Cell> unvisitedNeighbors(int, int);
-    void debugDisplay();
-
-};
+#include <stack>
+#include <vector>
+//#include <bits/stl_stack.h>
+//#include <bits/stl_vector.h>
+//#include <bits/stl_set.h>
 
 class Cell {
 public:
@@ -49,7 +25,35 @@ public:
 
     Cell(int theRow, int theCol, bool theBorder);
     Cell();
+    void print();
+};
+
+class Maze {
+public:
+//    const int r = rand();
+//    Cell **myMaze;
+    int visited;
+    Maze(int, int, bool);
+    void display();
+
+
+    std::stack<Cell> lastGoodCell;
+    std::stack<Cell> solution;
+    std::stack<Cell> solutionSet;
+    bool solutionFound;
+    bool debug;
+    int myRows;
+    int myCols;
+    int numCells;
+    void init();
+    void fillMaze();
+    void dig();
+    std::vector<Cell> unvisitedNeighbors(int, int);
+    void debugDisplay();
+
 };
 
 
+
 #endif //MAZE_GENERATOR_PORT_MAZE_H
+
