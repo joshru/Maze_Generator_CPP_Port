@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <stack>
+#include <algorithm>
+#include <deque>
 #include <stdio.h>
 #include "Maze.h"
 
@@ -85,7 +87,7 @@ void Maze::display() {
             } else if (myMaze[i][j].isEnd) {
                 cout << "E ";
 
-//            } else if (solution.contains(myMaze[i][j])) {
+//            } else if (std::find(solution.begin(), solution.end(), myMaze[i][j]) != solution.end()) {
 //                cout << "* ";
 
             } else {
@@ -100,7 +102,7 @@ void Maze::display() {
 void Maze::dig() {
     myMaze[1][1].visited = true;
     Cell current = myMaze[1][1];
-    solution.push(current);
+    solution.push_back(current);
 
     while (visited < numCells) {
         std::vector<Cell> neighbors = unvisitedNeighbors(current.row, current.col);
@@ -131,11 +133,11 @@ void Maze::dig() {
             //check if endpoint has been reached
             if (current.row == myRows - 2 && current.col == myCols - 2) {
                 solutionFound = true;
-                solution.push(current);
+                solution.push_back(current);
             }
 
             if (!solutionFound) {
-                solution.push(current);
+                solution.push_back(current);
             }
             ++visited;
 
@@ -145,7 +147,7 @@ void Maze::dig() {
                 lastGoodCell.pop();
             }
             if (!solution.empty() && !solutionFound) {
-                solution.pop();
+                solution.pop_back();
             }
 
         }

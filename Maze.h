@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <stack>
 #include <vector>
+#include <deque>
 //#include <bits/stl_stack.h>
 //#include <bits/stl_vector.h>
 //#include <bits/stl_set.h>
@@ -38,7 +39,7 @@ public:
 
 
     std::stack<Cell> lastGoodCell;
-    std::stack<Cell> solution;
+    std::deque<Cell> solution;
     std::stack<Cell> solutionSet;
     bool solutionFound;
     bool debug;
